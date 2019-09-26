@@ -4,12 +4,12 @@
 
 class Contact {
 public:
-    Contact(unsigned long long account, const char* nickname)
+    Contact(unsigned int account, const char* nickname)
         : m_account(account), m_nickname(nickname)
     {
     }
 
 public:
-    unsigned long long m_account = 0;
+    unsigned int m_account = 0; //TODO: refactor to char array ???
     std::string m_nickname = "";
 };
