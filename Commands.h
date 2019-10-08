@@ -5,6 +5,8 @@
 const unsigned int CMD_LOGIN_REQ = 0x1000;
 const unsigned int CMD_LOGIN_RSP = 0x4000;
 const unsigned int CMD_INSTANT_MSG = 0x1001;
+const unsigned int LOGIN_SUCCESS = '0';
+const unsigned int LOGIN_FAIL = '1';
 
 class BaseMsg {
 public:
@@ -35,5 +37,5 @@ public:
 
 public:
     unsigned int m_account = 0;
-    unsigned int m_result = 0;
+    unsigned int m_result = LOGIN_SUCCESS;
 };
