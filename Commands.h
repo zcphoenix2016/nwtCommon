@@ -37,5 +37,6 @@ public:
 
 public:
     unsigned int m_account = 0;
-    unsigned int m_result = LOGIN_SUCCESS;
+    unsigned int m_rspCode = LOGIN_SUCCESS;
+    char m_rspMsg[64] = { 0 };
 };
