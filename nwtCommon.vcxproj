@@ -125,7 +125,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Commands.h" />
-    <ClInclude Include="Contact.h" />
     <ClInclude Include="NwtHeader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
