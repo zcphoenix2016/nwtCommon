@@ -21,5 +21,13 @@
     <ClInclude Include="NwtHeader.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="NwtBase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="NwtBase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
