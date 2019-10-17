@@ -1,4 +1,5 @@
 #include "NwtBase.h"
+
 #include "WinSock2.h"
 
 int nwtSend(unsigned int sock, void* buf, size_t nbytes) {
@@ -20,7 +21,7 @@ int nwtSend(unsigned int sock, void* buf, size_t nbytes) {
     return (int)(nbytes - nleft);
 }
 
-int nwtRecv(unsigned int sock, void* buf, size_t nbytes) {
+static int LoopRecv(unsigned int sock, void* buf, size_t nbytes) {
     int nread = 0;
     size_t nleft = nbytes;
     char* ptr = (char*)buf;
@@ -37,4 +38,22 @@ int nwtRecv(unsigned int sock, void* buf, size_t nbytes) {
     }
 
     return (int)(nbytes - nleft);
+}
+
+void* nwtRecv(unsigned int sock) {
+    NwtHeader nwtHead;
+    if (sizeof(NwtHeader) != LoopRecv(sock, &nwtHead, sizeof(NwtHeader))) {
+        return NULL;
+    }
+
+    char* task = new char[sizeof(NwtHeader) + nwtHead.m_contentLength];
+    memcpy(task, &nwtHead, sizeof(NwtHeader));
+    if (0 < nwtHead.m_contentLength) {
+        if (nwtHead.m_contentLength != LoopRecv(sock, task + sizeof(NwtHeader), nwtHead.m_contentLength)) {
+            delete[] task;
+            return NULL;
+        }
+    }
+
+    return (void*)task;
 }
