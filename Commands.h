@@ -22,6 +22,7 @@ class LoginReq : public BaseMsg {
 public:
     LoginReq() {
         BaseMsg();
+        m_head.m_cmd = CMD_LOGIN_REQ;
     }
 
 public:
@@ -33,6 +34,7 @@ class LoginRsp : public BaseMsg {
 public:
     LoginRsp() {
         BaseMsg();
+        m_head.m_cmd = CMD_LOGIN_RSP;
     }
 
 public:
@@ -40,4 +42,15 @@ public:
     char m_nickname[64] = { 0 };
     unsigned int m_rspCode = LOGIN_SUCCESS;
     char m_rspMsg[64] = { 0 };
+};
+
+class InstantMsg : public BaseMsg {
+public:
+    InstantMsg() {
+        BaseMsg();
+        m_head.m_cmd = CMD_INSTANT_MSG;
+    }
+
+public:
+    char m_content[0];
 };
